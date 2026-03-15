@@ -1,0 +1,119 @@
+services:
+  event-service:
+    build:
+      context: .
+      dockerfile: services/event-service/Dockerfile
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env
+    environment:
+      SUPABASE_URL: "${SUPABASE_URL:-}"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:4000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  feedback-service:
+    build:
+      context: .
+      dockerfile: services/feedback-service/Dockerfile
+    ports:
+      - "4001:4001"
+    env_file:
+      - .env
+    environment:
+      SUPABASE_URL: "${SUPABASE_URL:-}"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:4001/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  analytics-service:
+    build:
+      context: .
+      dockerfile: services/analytics-service/Dockerfile
+    ports:
+      - "4002:4002"
+    env_file:
+      - .env
+    environment:
+      SUPABASE_URL: "${SUPABASE_URL:-}"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:4002/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: dashboard/Dockerfile
+      args:
+        NEXT_PUBLIC_DB_URL: "${NEXT_PUBLIC_DB_URL}"
+        NEXT_PUBLIC_DB_ANON_KEY: "${NEXT_PUBLIC_DB_ANON_KEY}"
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      event-service:
+        condition: service_healthy
+      feedback-service:
+        condition: service_healthy
+      analytics-service:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  feedback-form:
+    build:
+      context: .
+      dockerfile: feedback-form/Dockerfile
+      args:
+        NEXT_PUBLIC_DB_URL: "${NEXT_PUBLIC_DB_URL}"
+        NEXT_PUBLIC_DB_ANON_KEY: "${NEXT_PUBLIC_DB_ANON_KEY}"
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    depends_on:
+      event-service:
+        condition: service_healthy
+      feedback-service:
+        condition: service_healthy
+      analytics-service:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3001/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      dashboard:
+        condition: service_healthy
+      feedback-form:
+        condition: service_healthy
+    restart: unless-stopped

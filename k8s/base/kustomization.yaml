@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: psd
+
+resources:
+  - namespace.yaml
+  - event-service/deployment.yaml
+  - event-service/service.yaml
+  - feedback-service/deployment.yaml
+  - feedback-service/service.yaml
+  - analytics-service/deployment.yaml
+  - analytics-service/service.yaml
+  - dashboard/deployment.yaml
+  - dashboard/service.yaml
+  - feedback-form/deployment.yaml
+  - feedback-form/service.yaml
+  - ingress.yaml
+  - hpa.yaml

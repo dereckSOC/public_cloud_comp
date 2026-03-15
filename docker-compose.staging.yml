@@ -1,0 +1,21 @@
+# Staging overrides — use with:
+#   docker compose -f docker-compose.yml -f docker-compose.staging.yml up
+#
+# In staging: no port exposure (sit behind a reverse proxy), stricter restarts.
+
+services:
+  event-service:
+    ports: []
+    restart: always
+
+  dashboard:
+    ports: []
+    restart: always
+    environment:
+      NODE_ENV: production
+
+  feedback-form:
+    ports: []
+    restart: always
+    environment:
+      NODE_ENV: production

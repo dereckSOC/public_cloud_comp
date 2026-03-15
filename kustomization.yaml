@@ -1,0 +1,16 @@
+images:
+  - name: cloud_compute_competition-dashboard
+    newName: dereckz/psd-dashboard
+    newTag: prod
+  - name: cloud_compute_competition-feedback-form
+    newName: dereckz/psd-feedback-form
+    newTag: prod
+  - name: cloud_compute_competition-event-service
+    newName: dereckz/psd-event-service
+    newTag: prod
+  - name: cloud_compute_competition-feedback-service
+    newName: dereckz/psd-feedback-service
+    newTag: prod
+  - name: cloud_compute_competition-analytics-service
+    newName: dereckz/psd-analytics-service
+    newTag: prod

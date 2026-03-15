@@ -1,0 +1,132 @@
+services:
+  # ─────────────────────────────────────────────
+  # Backend: event-service  (port 4000)
+  # ─────────────────────────────────────────────
+  - type: web
+    name: event-service
+    runtime: docker
+    region: singapore
+    plan: starter
+    rootDir: .
+    dockerfilePath: services/event-service/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 4000
+      - key: SUPABASE_URL
+        sync: false           # set in Render dashboard
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false           # set in Render dashboard
+
+  # ─────────────────────────────────────────────
+  # Backend: feedback-service  (port 4001)
+  # ─────────────────────────────────────────────
+  - type: web
+    name: feedback-service
+    runtime: docker
+    region: singapore
+    plan: starter
+    rootDir: .
+    dockerfilePath: services/feedback-service/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 4001
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+
+  # ─────────────────────────────────────────────
+  # Backend: analytics-service  (port 4002)
+  # ─────────────────────────────────────────────
+  - type: web
+    name: analytics-service
+    runtime: docker
+    region: singapore
+    plan: starter
+    rootDir: .
+    dockerfilePath: services/analytics-service/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 4002
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+
+  # ─────────────────────────────────────────────
+  # Frontend: dashboard  (Next.js, port 3000)
+  # ─────────────────────────────────────────────
+  - type: web
+    name: dashboard
+    runtime: docker
+    region: singapore
+    plan: starter
+    rootDir: .
+    dockerfilePath: dashboard/Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: NEXT_PUBLIC_DB_URL
+        value: https://ngxavffxsinldsdenmzc.supabase.co
+      - key: NEXT_PUBLIC_DB_ANON_KEY
+        sync: false
+      - key: NODE_ENV
+        value: production
+      # Runtime service URLs — replace with your actual Render service URLs after first deploy
+      - key: EVENT_SERVICE_URL
+        value: https://event-service.onrender.com
+      - key: FEEDBACK_SERVICE_URL
+        value: https://feedback-service.onrender.com
+      - key: ANALYTICS_SERVICE_URL
+        value: https://analytics-service.onrender.com
+      # Runtime secrets
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: GOOGLE_TRANSLATE_API_KEY
+        sync: false
+
+  # ─────────────────────────────────────────────
+  # Frontend: feedback-form  (Next.js, port 3001)
+  # ─────────────────────────────────────────────
+  - type: web
+    name: feedback-form
+    runtime: docker
+    region: singapore
+    plan: starter
+    rootDir: .
+    dockerfilePath: feedback-form/Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: NEXT_PUBLIC_DB_URL
+        value: https://ngxavffxsinldsdenmzc.supabase.co
+      - key: NEXT_PUBLIC_DB_ANON_KEY
+        sync: false
+      - key: NODE_ENV
+        value: production
+      # Runtime service URLs
+      - key: EVENT_SERVICE_URL
+        value: https://event-service.onrender.com
+      - key: FEEDBACK_SERVICE_URL
+        value: https://feedback-service.onrender.com
+      - key: ANALYTICS_SERVICE_URL
+        value: https://analytics-service.onrender.com
+      # Runtime secrets
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: GOOGLE_TRANSLATE_API_KEY
+        sync: false

@@ -1,0 +1,68 @@
+# Backend service ingress — strips /api/<service-name> prefix before forwarding.
+# /api/analytics-service/device-entry -> analytics-service:4002/device-entry
+# /api/feedback-service/questions     -> feedback-service:4001/questions
+# /api/event-service/events/access    -> event-service:4000/events/access
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: psd-backend-ingress
+  namespace: psd
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: ""
+      http:
+        paths:
+          - path: /api/analytics-service(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: analytics-service
+                port:
+                  number: 4002
+          - path: /api/feedback-service(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: feedback-service
+                port:
+                  number: 4001
+          - path: /api/event-service(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: event-service
+                port:
+                  number: 4000
+---
+# Frontend app ingress — no rewrite, paths are forwarded as-is.
+# /feedback/* -> feedback-form:3001
+# /*          -> dashboard:3000
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: psd-frontend-ingress
+  namespace: psd
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: ""
+      http:
+        paths:
+          - path: /feedback
+            pathType: Prefix
+            backend:
+              service:
+                name: feedback-form
+                port:
+                  number: 3001
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dashboard
+                port:
+                  number: 3000

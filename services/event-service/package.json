@@ -1,0 +1,17 @@
+{
+  "name": "@psd/event-service",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "lint": "eslint src",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@psd/shared": "file:../../shared",
+    "@supabase/supabase-js": "^2.84.0"
+  }
+}

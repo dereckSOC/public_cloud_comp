@@ -1,0 +1,61 @@
+services:
+  mock-supabase:
+    image: node:20-alpine
+    working_dir: /app
+    command: ["node", "server.js"]
+    volumes:
+      - ./tests/e2e/mock-supabase:/app:ro
+    ports:
+      - "54321:54321"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:54321/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  event-service:
+    environment:
+      SUPABASE_URL: "http://mock-supabase:54321"
+      NEXT_PUBLIC_DB_URL: "http://mock-supabase:54321"
+      SUPABASE_SERVICE_ROLE_KEY: "e2e-service-role"
+    depends_on:
+      mock-supabase:
+        condition: service_healthy
+
+  feedback-service:
+    environment:
+      SUPABASE_URL: "http://mock-supabase:54321"
+      NEXT_PUBLIC_DB_URL: "http://mock-supabase:54321"
+      SUPABASE_SERVICE_ROLE_KEY: "e2e-service-role"
+    depends_on:
+      mock-supabase:
+        condition: service_healthy
+
+  analytics-service:
+    environment:
+      SUPABASE_URL: "http://mock-supabase:54321"
+      NEXT_PUBLIC_DB_URL: "http://mock-supabase:54321"
+      SUPABASE_SERVICE_ROLE_KEY: "e2e-service-role"
+    depends_on:
+      mock-supabase:
+        condition: service_healthy
+
+  dashboard:
+    environment:
+      NEXT_PUBLIC_DB_URL: "http://mock-supabase:54321"
+      NEXT_PUBLIC_DB_ANON_KEY: "e2e-anon-key"
+      SUPABASE_SERVICE_ROLE_KEY: "e2e-service-role"
+      GOOGLE_TRANSLATE_API_KEY: "stub"
+      EVENT_SERVICE_URL: "http://event-service:4000"
+      FEEDBACK_SERVICE_URL: "http://feedback-service:4001"
+      ANALYTICS_SERVICE_URL: "http://analytics-service:4002"
+
+  feedback-form:
+    environment:
+      NEXT_PUBLIC_DB_URL: "http://mock-supabase:54321"
+      NEXT_PUBLIC_DB_ANON_KEY: "e2e-anon-key"
+      SUPABASE_SERVICE_ROLE_KEY: "e2e-service-role"
+      GOOGLE_TRANSLATE_API_KEY: "stub"
+      EVENT_SERVICE_URL: "http://event-service:4000"
+      FEEDBACK_SERVICE_URL: "http://feedback-service:4001"
+      ANALYTICS_SERVICE_URL: "http://analytics-service:4002"

@@ -1,0 +1,26 @@
+{
+  "name": "@psd/shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
+  },
+  "exports": {
+    "./lib/*.json":      "./src/lib/*.json",
+    "./lib/*.js":        "./src/lib/*.js",
+    "./lib/*":           "./src/lib/*.js",
+    "./components/*.js": "./src/components/*.js",
+    "./components/*":    "./src/components/*.js",
+    "./globals.css":     "./src/globals.css",
+    "./providers":       "./src/providers.js"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "jest-environment-jsdom": "^29.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {}
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "common": {
+    "loading": "Sedang dimuatkan..."
+  },
+  "home": {
+    "ready": "Sedia",
+    "start": "Mula"
+  },
+  "intro": {
+    "skip": "Langkau",
+    "next": "Seterusnya",
+    "back": "Kembali",
+    "proceed": "Teruskan"
+  },
+  "introSlides": {
+    "s0": {
+      "title": "Amaran!",
+      "l1": "Amaran dicetuskan!",
+      "l2": "Pembiakan sel luar biasa dikesan!"
+    },
+    "s1": {
+      "title": "Sel Penjaga",
+      "l1": "Hai! Saya Sel Penjaga"
+    },
+    "s2": {
+      "title": "Sel Penjaga",
+      "l1": "Saya perlukan bantuan anda!"
+    },
+    "s3": {
+      "title": "Sel Penjaga",
+      "l1": "Dua sel mencurigakan ditemui."
+    },
+    "s4": {
+      "title": "Sel Penjaga",
+      "l1": "Mari dengar penjelasan mereka."
+    },
+    "s5": {
+      "title": "Sel A",
+      "l1": "Bukan saya!",
+      "l2": "Sel B yang melakukannya!"
+    },
+    "s6": {
+      "title": "Sel B",
+      "l1": "Dia menipu!",
+      "l2": "Pasti Sel A!"
+    },
+    "s7": {
+      "title": "Sel Penjaga",
+      "l1": "Hmm...",
+      "l2": "Sukar menentukan kebenaran."
+    },
+    "s8": {
+      "title": "Sel Penjaga",
+      "l1": "Saya perlukan bantuan anda!",
+      "l2": "Hadiri acara tersebut."
+    },
+    "s9": {
+      "title": "Sel Penjaga",
+      "l1": "Cari petunjuk dan laporkan.",
+      "l2": "Semoga berjaya!"
+    }
+  },
+  "quest": {
+    "availableTasks": "Tugasan Tersedia",
+    "eventSubtitle": "Acara Kesedaran Pantai Punggol",
+    "loadingQuests": "Memuatkan tugasan...",
+    "noneAvailable": "Tiada tugasan tersedia.",
+    "backToHome": "Kembali ke Laman Utama",
+    "events": "Media sosial",
+    "returnToStory": "Kembali ke Cerita",
+    "completeAllFirst": "Lengkapkan semua tugasan dahulu",
+    "completed": "Selesai",
+    "scanQr": "Imbas QR",
+    "enterPin": "Masukkan PIN"
+  },
+  "feedback": {
+    "home": "Laman Utama",
+    "rating": "Penilaian",
+    "returnToBase": "Kembali ke Pangkalan",
+    "submitTitle": "Hantar Maklum Balas",
+    "submitDescription": "Kongsi pengalaman anda"
+  },
+  "event": {
+    "home": "Laman Utama",
+    "availableEvents": "Acara Tersedia",
+    "readMore": "Baca lagi",
+    "defaultTitle": "Tajuk Acara",
+    "defaultDescription": "Penerangan acara."
+  },
+  "nav": {
+    "home": "Laman Utama"
+  },
+  "rpg": {
+    "loading": "Memulakan kultur sel...",
+    "textPlaceholder": "Huraikan pemerhatian anda...",
+    "saveObservation": "Simpan Pemerhatian",
+    "present": "Ada",
+    "absent": "Tiada",
+    "evidenceIntensity": "Keamatan Bukti",
+    "sampleLogged": "SAMPEL DIREKODKAN",
+    "thankYou": {
+      "line1": "Pemerhatian direkodkan.",
+      "line2": "Analisis sedang dijalankan.",
+      "line3": "Laporan dimuat naik.",
+      "line4": "Sila tunggu arahan seterusnya."
+    },
+    "start": "Mula",
+    "submit": "Hantar",
+    "submitting": "Menghantar...",
+    "questionLabel": "Soalan",
+    "option1Label": "Pilihan 1",
+    "option2Label": "Pilihan 2",
+    "instruction": {
+      "title": "Mari mulakan soal siasat!",
+      "bold": "Klik sama ada Sel A atau Sel B",
+      "rest": "bergantung pada pilihan yang paling sesuai dengan pengalaman anda.",
+      "boldNeutral": "Klik sama ada Pilihan 1 atau Pilihan 2",
+      "restNeutral": "bergantung kepada pilihan yang paling sesuai dengan pengalaman anda."
+    },
+    "errors": {
+      "answerAll": "Sila jawab semua soalan sebelum menghantar.",
+      "submitFailed": "Tidak dapat menghantar maklum balas. Sila cuba lagi."
+    },
+    "guardianName": "Penjaga",
+    "defaultQuestion": "Soalan lalai"
+  },
+  "scan": {
+    "enterPinTitle": "Sila Masukkan PIN Anda",
+    "incorrectPin": "PIN tidak betul",
+    "pinCorrect": "PIN betul! Anda boleh teruskan.",
+    "pinIncorrectTryAgain": "PIN tidak betul, sila cuba lagi.",
+    "enterPinButton": "Masukkan PIN",
+    "verifyPin": "Sahkan PIN",
+    "startScanner": "Mulakan Imbasan",
+    "stopScanner": "Hentikan Imbasan",
+    "scanAgain": "Imbas Lagi",
+    "questCompleted": "Tugasan Selesai!",
+    "qrCode": "Kod QR",
+    "httpsTitle": "HTTPS Diperlukan",
+    "httpsHint": "Akses kamera memerlukan HTTPS. Gunakan localtunnel atau ngrok.",
+    "httpsRequired": "Akses kamera memerlukan HTTPS. Sila guna ngrok atau localtunnel.",
+    "noCameraSupport": "Pelayar anda tidak menyokong akses kamera.",
+    "noCamerasFound": "Tiada kamera dijumpai.",
+    "failedToStart": "Gagal memulakan kamera.",
+    "permissionDenied": "Kebenaran kamera ditolak.",
+    "noCameraFound": "Tiada kamera dijumpai.",
+    "cameraInUse": "Kamera sedang digunakan oleh aplikasi lain."
+  },
+  "rewards": {
+    "title": "Tuntut Hadiah Anda",
+    "description": "Selesai tugasan? Tuntut hadiah anda di sini.",
+    "redeemButton": "Hadiah Ditebus?",
+    "confirmTitle": "Adakah anda pasti?",
+    "confirmMessage": "Dengan meneruskan, ia akan dianggap bahawa anda telah menebus hadiah anda. Tindakan ini tidak boleh dibatalkan.",
+    "confirmContinue": "Teruskan",
+    "confirmCancel": "Batal",
+    "completed": "Hadiah Ditebus"
+  },
+  "feedbackScene": {
+    "loading": "Memuatkan babak...",
+    "continue": "Teruskan",
+    "header": "Babak Keputusan",
+    "choicesLabel": "Pilihan",
+    "cellA": "Sel A",
+    "cellB": "Sel B",
+    "thankYouTitle": "Terima kasih kerana menyelamatkan hari ini! Sebagai tanda penghargaan, anda diberikan hadiah.",
+    "outcomes": {
+      "cell_a": {
+        "title": "Nampaknya Sel A ialah pelakunya!",
+        "text": "Terima kasih atas bantuan anda!"
+      },
+      "cell_b": {
+        "title": "Nampaknya Sel B ialah pelakunya!",
+        "text": "Terima kasih atas bantuan anda!"
+      }
+    }
+  }
+}

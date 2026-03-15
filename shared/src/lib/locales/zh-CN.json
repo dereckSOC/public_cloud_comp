@@ -1,0 +1,178 @@
+{
+  "common": {
+    "loading": "加载中..."
+  },
+  "home": {
+    "ready": "准备好了",
+    "start": "开始"
+  },
+  "intro": {
+    "skip": "跳过",
+    "next": "下一步",
+    "back": "返回",
+    "proceed": "继续"
+  },
+  "introSlides": {
+    "s0": {
+      "title": "警报！",
+      "l1": "警报已触发！",
+      "l2": "检测到异常细胞复制！"
+    },
+    "s1": {
+      "title": "守护细胞",
+      "l1": "你好！我是守护细胞"
+    },
+    "s2": {
+      "title": "守护细胞",
+      "l1": "警报已经触发，我需要你的帮助！"
+    },
+    "s3": {
+      "title": "守护细胞",
+      "l1": "发现两个可疑细胞，可能导致异常复制。"
+    },
+    "s4": {
+      "title": "守护细胞",
+      "l1": "让我们看看他们怎么说。"
+    },
+    "s5": {
+      "title": "细胞 A",
+      "l1": "不可能是我，我在活动现场！",
+      "l2": "是细胞 B！"
+    },
+    "s6": {
+      "title": "细胞 B",
+      "l1": "他在说谎！我也在现场！",
+      "l2": "一定是细胞 A！"
+    },
+    "s7": {
+      "title": "守护细胞",
+      "l1": "嗯……",
+      "l2": "我无法判断谁说的是真话。"
+    },
+    "s8": {
+      "title": "守护细胞",
+      "l1": "我需要你的帮助！",
+      "l2": "你的任务是参加这个活动。"
+    },
+    "s9": {
+      "title": "守护细胞",
+      "l1": "寻找线索并报告你的发现。",
+      "l2": "祝你好运！"
+    }
+  },
+  "quest": {
+    "availableTasks": "可用任务",
+    "eventSubtitle": "榜鹅海岸意识活动",
+    "loadingQuests": "正在加载任务...",
+    "noneAvailable": "目前没有可用任务。",
+    "backToHome": "返回主页",
+    "events": "社交",
+    "returnToStory": "返回故事",
+    "completeAllFirst": "请先完成所有任务",
+    "completed": "已完成",
+    "scanQr": "扫描二维码",
+    "enterPin": "输入密码"
+  },
+  "feedback": {
+    "home": "主页",
+    "rating": "评分",
+    "returnToBase": "返回基地",
+    "submitTitle": "提交反馈",
+    "submitDescription": "与我们分享你的体验"
+  },
+  "event": {
+    "home": "主页",
+    "availableEvents": "可用活动",
+    "readMore": "阅读更多",
+    "defaultTitle": "活动标题",
+    "defaultDescription": "活动描述。"
+  },
+  "nav": {
+    "home": "主页"
+  },
+  "rpg": {
+    "loading": "正在初始化细胞培养...",
+    "textPlaceholder": "描述你观察到的细胞变化...",
+    "saveObservation": "保存记录",
+    "present": "存在",
+    "absent": "不存在",
+    "evidenceIntensity": "证据强度",
+    "sampleLogged": "样本已记录",
+    "thankYou": {
+      "line1": "观察结果已记录。",
+      "line2": "守护细胞正在分析。",
+      "line3": "报告已上传。",
+      "line4": "请等待进一步指示。"
+    },
+    "start": "开始",
+    "submit": "提交",
+    "submitting": "提交中…",
+    "questionLabel": "问题",
+    "option1Label": "选项 1",
+    "option2Label": "选项 2",
+    "instruction": {
+      "title": "让我们开始审问！",
+      "bold": "点击细胞 A 或细胞 B",
+      "rest": "选择最符合你体验的选项。",
+      "boldNeutral": "点击选项 1 或选项 2",
+      "restNeutral": "根据最符合您体验的选项。"
+    },
+    "errors": {
+      "answerAll": "请在提交前回答所有问题。",
+      "submitFailed": "无法提交反馈，请再试一次。"
+    },
+    "guardianName": "守护者",
+    "defaultQuestion": "默认问题"
+  },
+  "scan": {
+    "enterPinTitle": "请输入你的密码",
+    "incorrectPin": "密码错误",
+    "pinCorrect": "密码正确！你可以继续。",
+    "pinIncorrectTryAgain": "密码不正确，请重试。",
+    "enterPinButton": "输入密码",
+    "verifyPin": "验证密码",
+    "startScanner": "开始扫描",
+    "stopScanner": "停止扫描",
+    "scanAgain": "再次扫描",
+    "questCompleted": "任务已完成！",
+    "qrCode": "二维码",
+    "httpsTitle": "需要 HTTPS",
+    "httpsHint": "相机访问需要 HTTPS。请使用 localtunnel 或 ngrok。",
+    "httpsRequired": "相机访问需要 HTTPS。请使用 ngrok 或 localtunnel。",
+    "noCameraSupport": "你的浏览器不支持相机访问。",
+    "noCamerasFound": "未找到相机。",
+    "failedToStart": "无法启动相机。",
+    "permissionDenied": "相机权限被拒绝。",
+    "noCameraFound": "未找到相机。",
+    "cameraInUse": "相机正在被其他应用占用。"
+  },
+  "rewards": {
+    "title": "领取奖励",
+    "description": "任务完成了？在这里兑换你的奖励。",
+    "redeemButton": "已领取奖励？",
+    "confirmTitle": "你确定吗？",
+    "confirmMessage": "继续操作即表示你已兑换奖励，此操作无法撤销。",
+    "confirmContinue": "继续",
+    "confirmCancel": "取消",
+    "completed": "奖励已兑换"
+  },
+  "feedbackScene": {
+    "loading": "正在加载场景…",
+    "continue": "继续",
+    "header": "结果场景",
+    "choicesLabel": "选择",
+    "cellA": "细胞 A",
+    "cellB": "细胞 B",
+    "thankYouTitle": "感谢你拯救了大家！作为答谢，特此授予你一份奖励。",
+    "outcomes": {
+      "cell_a": {
+        "title": "看来细胞 A 是罪魁祸首！",
+        "text": "谢谢你的帮助！"
+      },
+      "cell_b": {
+        "title": "看来细胞 B 是罪魁祸首！",
+        "text": "谢谢你的帮助！"
+      }
+    }
+  }
+}

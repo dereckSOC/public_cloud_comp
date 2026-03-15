@@ -1,0 +1,176 @@
+{
+  "common": {
+    "loading": "Loading..."
+  },
+  "home": {
+    "ready": "Ready",
+    "start": "Start"
+  },
+  "intro": {
+    "skip": "Skip",
+    "next": "Next",
+    "back": "Back",
+    "proceed": "Proceed"
+  },
+  "introSlides": {
+    "s0": {
+      "title": "Alert!",
+      "l1": "An alert has been triggered!",
+      "l2": "Unusual cell replication detected!"
+    },
+    "s1": {
+      "title": "Guardian Cell",
+      "l1": "Hi! I am Guardian Cell"
+    },
+    "s2": {
+      "title": "Guardian Cell",
+      "l1": "An alert has been triggered and I need your help to fix it!"
+    },
+    "s3": {
+      "title": "Guardian Cell",
+      "l1": "We found two suspicious cells that could be the cause of the unusual cell replication."
+    },
+    "s4": {
+      "title": "Guardian Cell",
+      "l1": "Let's see what they have to say."
+    },
+    "s5": {
+      "title": "Cell A",
+      "l1": "It couldn't have been me. I was at the event!",
+      "l2": "Cell B did it!"
+    },
+    "s6": {
+      "title": "Cell B",
+      "l1": "He is lying! I was at the event!",
+      "l2": "It's definitely Cell A!"
+    },
+    "s7": {
+      "title": "Guardian Cell",
+      "l1": "Hmm...",
+      "l2": "I can't tell who is telling the truth..."
+    },
+    "s8": {
+      "title": "Guardian Cell",
+      "l1": "I need your help!",
+      "l2": "Your mission is to attend the event."
+    },
+    "s9": {
+      "title": "Guardian Cell",
+      "l1": "Look for any clues and report what you notice.",
+      "l2": "Good luck and have fun!"
+    }
+  },
+  "quest": {
+    "availableTasks": "Available Tasks",
+    "eventSubtitle": "Punggol Coast Awareness Event",
+    "loadingQuests": "Loading quests...",
+    "noneAvailable": "No quests available at the moment.",
+    "backToHome": "Back to Home",
+    "events": "Social",
+    "returnToStory": "Return to Story",
+    "completeAllFirst": "Complete all quests first",
+    "completed": "Completed",
+    "scanQr": "Scan QR",
+    "enterPin": "Enter Pin"
+  },
+  "feedback": {
+    "home": "Home",
+    "rating": "Start",
+    "returnToBase": "Return to Base",
+    "submitTitle": "Start the Interrogation",
+    "submitDescription": "Find out who the culprit is!"
+  },
+  "event": {
+    "home": "Home",
+    "availableEvents": "Available Events",
+    "readMore": "Read more",
+    "defaultTitle": "Event Title",
+    "defaultDescription": "Event description goes here."
+  },
+  "nav": {
+    "home": "Home"
+  },
+  "rpg": {
+    "loading": "Initializing cell cultures...",
+    "textPlaceholder": "Describe the observed cellular changes...",
+    "saveObservation": "Save Observation",
+    "present": "Present",
+    "absent": "Absent",
+    "evidenceIntensity": "Evidence Intensity",
+    "sampleLogged": "SAMPLE LOGGED",
+    "thankYou": {
+      "line1": "Observations recorded in culture log.",
+      "line2": "Guardian Cell will analyze the cellular disruption.",
+      "line3": "Report uploaded to the tissue database.",
+      "line4": "Await further instructions from the lab core."
+    },
+    "start": "Start",
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "questionLabel": "Question",
+    "option1Label": "Option 1",
+    "option2Label": "Option 2",
+    "instruction": {
+      "title": "Let's start the interrogation!",
+      "bold": "Click on either Cell A or Cell B",
+      "rest": "depending on which option fits your experience the most.",
+      "boldNeutral": "Click on either Option 1 or Option 2",
+      "restNeutral": "depending on which option fits your experience the most."
+    },
+    "errors": {
+      "answerAll": "Please answer all questions before submitting.",
+      "submitFailed": "Could not submit feedback. Please try again."
+    },
+    "guardianName": "Guardian",
+    "defaultQuestion": "Default qn"
+  },
+  "scan": {
+    "enterPinTitle": "Please Enter Your Pin",
+    "incorrectPin": "Incorrect PIN",
+    "pinCorrect": "PIN correct! You can now proceed.",
+    "pinIncorrectTryAgain": "PIN is incorrect, please try again.",
+    "enterPinButton": "Enter PIN",
+    "verifyPin": "Verify PIN",
+    "startScanner": "Start Scanner",
+    "stopScanner": "Stop Scanner",
+    "scanAgain": "Scan Again",
+    "questCompleted": "Quest Completed!",
+    "qrCode": "QR Code",
+    "httpsTitle": "HTTPS Required",
+    "httpsHint": "Camera access needs HTTPS. Use localtunnel or ngrok.",
+    "httpsRequired": "Camera access requires HTTPS. Please use ngrok or localtunnel.",
+    "noCameraSupport": "Your browser doesn't support camera access.",
+    "noCamerasFound": "No cameras found.",
+    "failedToStart": "Failed to start camera.",
+    "permissionDenied": "Camera permission denied.",
+    "noCameraFound": "No camera found.",
+    "cameraInUse": "Camera is in use by another app."
+  },
+  "rewards": {
+    "title": "Collect Your Rewards",
+    "description": "Done with your quests? Redeem your reward here.",
+    "redeemButton": "Reward Redeemed?",
+    "confirmTitle": "Are you sure?",
+    "confirmMessage": "By continuing, it will be assumed that you have redeemed your reward. This action cannot be undone.",
+    "confirmContinue": "Continue",
+    "confirmCancel": "Cancel",
+    "completed": "Reward Redeemed"
+  },
+  "feedbackScene": {
+    "loading": "Loading scene...",
+    "continue": "Continue",
+    "header": "Outcome Scene",
+    "choicesLabel": "Choices",
+    "cellA": "Cell A",
+    "cellB": "Cell B",
+    "thankYouTitle": "Thank you for saving the day! As a token of gratitude, a reward is granted to you.",
+    "outcomes": {
+      "cell_a": {
+        "title": "It seems like Cell A is the Culprit!"
+            },
+      "cell_b": {
+        "title": "It seems like Cell B is the Culprit!"
+      }
+    }
+  }
+}

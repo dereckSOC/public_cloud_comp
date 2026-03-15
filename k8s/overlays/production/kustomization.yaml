@@ -1,0 +1,42 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: psd
+
+resources:
+  - ../../base
+
+labels:
+  - pairs:
+      environment: production
+
+images:
+  - name: cloud_compute_competition-dashboard
+    newName: ghcr.io/your-org/psd-dashboard
+    newTag: prod
+  - name: cloud_compute_competition-feedback-form
+    newName: ghcr.io/your-org/psd-feedback-form
+    newTag: prod
+  - name: cloud_compute_competition-event-service
+    newName: ghcr.io/your-org/psd-event-service
+    newTag: prod
+  - name: cloud_compute_competition-feedback-service
+    newName: ghcr.io/your-org/psd-feedback-service
+    newTag: prod
+  - name: cloud_compute_competition-analytics-service
+    newName: ghcr.io/your-org/psd-analytics-service
+    newTag: prod
+
+patches:
+  - target:
+      group: networking.k8s.io
+      version: v1
+      kind: Ingress
+      name: psd-backend-ingress
+    path: backend-ingress-patch.yaml
+  - target:
+      group: networking.k8s.io
+      version: v1
+      kind: Ingress
+      name: psd-frontend-ingress
+    path: frontend-ingress-patch.yaml

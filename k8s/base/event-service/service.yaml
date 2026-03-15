@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-service
+  namespace: psd
+spec:
+  type: ClusterIP
+  selector:
+    app: event-service
+  ports:
+    - port: 4000
+      targetPort: 4000
+      protocol: TCP
