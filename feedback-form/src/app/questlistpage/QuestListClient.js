@@ -249,12 +249,12 @@ export default function QuestListClient() {
           >
             {t("quest.backToHome")}
           </Link>
-          <a
+          <Link
             href={`/eventlistpage${queryString}`}
             className="bg-indigo-700 text-yellow-300 border-2 border-indigo-500 px-6 py-3 rounded-lg shadow-lg hover:bg-indigo-600 transition-colors text-base font-bold font-silkscreen"
           >
             {t("quest.events")}
-          </a>
+          </Link>
 
           {storyModeEnabled && <Link
             href={`/intropage${queryString}`}
