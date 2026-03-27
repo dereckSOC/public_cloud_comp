@@ -15,7 +15,7 @@ export default function OverviewTab({ data, loading, error }) {
 
     useEffect(() => {
         if (!eventId) return;
-        const targetUrl = `https://gamified-feedback.onrender.com/?eventId=${eventId}&lang=en`;
+        const targetUrl = `http://gamified-feedback.eastasia.cloudapp.azure.com/?eventId=${eventId}&lang=en`;
         const url = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(targetUrl)}&format=png`;
         setQrUrl(url);
     }, [eventId]);
@@ -44,7 +44,7 @@ export default function OverviewTab({ data, loading, error }) {
         setQrError(null);
 
         try {
-            const targetUrl = `https://gamified-feedback.onrender.com/?eventId=${eventId}&lang=en`;
+            const targetUrl = `http://gamified-feedback.eastasia.cloudapp.azure.com/?eventId=${eventId}&lang=en`;
             const url = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(targetUrl)}&format=png`;
 
             await new Promise((resolve, reject) => {
