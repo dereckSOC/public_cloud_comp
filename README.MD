@@ -1,4 +1,4 @@
-# Cloud Compute Competition
+# Gamified Feedback Application
 
 Cloud-native event feedback platform with two Next.js applications, three Node.js backend services, a shared reusable package, Supabase as the persistence/auth layer, Docker Compose for local integration, and Kubernetes as the deployment baseline.
 

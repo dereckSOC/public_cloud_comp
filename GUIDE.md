@@ -1,4 +1,4 @@
-# Cloud Compute Competition Guide
+# Gamified Feedback Application Guide
 
 Cloud-native feedback collection platform built with two Next.js apps, three Node.js backend services, Supabase, and Kubernetes.
 
