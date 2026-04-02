@@ -181,7 +181,7 @@ Browser code should never receive or embed the service-role key.
 - HPAs exist for all five workloads
 - resource requests and limits are defined on all deployments
 
-Operational deployment detail is documented in [DEPLOYMENT.md](/Users/wymenlim/Documents/Cloud_compute_competition/DEPLOYMENT.md).
+Operational deployment detail is documented in [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Prerequisites
 
@@ -696,7 +696,7 @@ For staging, replace `psd` with `psd-staging`.
 
 ### CI Jobs
 
-The GitHub Actions workflow in [.github/workflows/ci.yml](/Users/wymenlim/Documents/Cloud_compute_competition/.github/workflows/ci.yml) currently covers:
+The GitHub Actions workflow in [.github/workflows/ci.yml](.github/workflows/ci.yml) currently covers:
 
 - shared package tests
 - `event-service` tests
@@ -914,8 +914,8 @@ kubectl rollout restart deployment/analytics-service -n psd
 
 Runbooks:
 
-- [docs/runbooks/service-down.md](/Users/wymenlim/Documents/Cloud_compute_competition/docs/runbooks/service-down.md)
-- [docs/runbooks/high-error-rate.md](/Users/wymenlim/Documents/Cloud_compute_competition/docs/runbooks/high-error-rate.md)
+- [docs/runbooks/service-down.md](docs/runbooks/service-down.md)
+- [docs/runbooks/high-error-rate.md](docs/runbooks/high-error-rate.md)
 
 ### HPA shows `cpu: <unknown>/70%`
 
