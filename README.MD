@@ -76,6 +76,13 @@ The team verified the original source pages as CC0 at the time of use.
 - Feedback theme: <https://www.youtube.com/watch?v=5Kz6BdkCx9c&list=PLdsGes2mFh92eHpOZVJQgoubb6rF0CcvU&index=35>
 - Background theme: <https://www.youtube.com/watch?v=ZfTxmwhrMfY&list=PLdsGes2mFh92eHpOZVJQgoubb6rF0CcvU&index=36>
 
+## Supabase Folder
+
+The `supabase/` folder is included for database handover.
+
+- `supabase/migrations/` contains the database structure needed to recreate the system in another Supabase project if required.
+- `supabase/config.toml` is the local Supabase CLI configuration file used for project setup.
+
 ## Key Documentation
 
 - Full project guide (setup, APIs, deployment, observability): [GUIDE.md](GUIDE.md)
