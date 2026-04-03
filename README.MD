@@ -81,7 +81,6 @@ The team verified the original source pages as CC0 at the time of use.
 The `supabase/` folder is included for database handover.
 
 - `supabase/migrations/` contains the database structure needed to recreate the system in another Supabase project if required.
-- `supabase/config.toml` is the local Supabase CLI configuration file used for project setup.
 
 ## Key Documentation
 
