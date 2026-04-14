@@ -1,13 +1,14 @@
 import { useMemo, useState } from 'react';
 import LineChart from '../../../components/LineChart';
 import PieChart from '../../../components/PieChart';
-import { formatDurationMinutes } from '../utils/analyticsCalculations';
+import { formatDurationMinutes, getSubmissionMetrics } from '../utils/analyticsCalculations';
 
 const PIE_COLORS = ['#F58491', '#ff8c42', '#8bcc5e', '#ffaa00', '#3aaed8', '#6d9f71', '#F58491'];
 const DELETED_COLOR = '#6b7280';
 const UNMAPPED_COLOR = '#b45309';
 
 export default function AnalyticsTab({ data, loading, error }) {
+    const submissionMetrics = useMemo(() => getSubmissionMetrics(data), [data]);
     const responseTrendsData = data.trends.responseTrends;
     const completionTimeData = data.trends.completionTimeTrends;
     const boothCompletionRows = useMemo(
@@ -300,21 +301,21 @@ export default function AnalyticsTab({ data, loading, error }) {
                     </div>
                     <div className="text-center p-4 bg-[#FFF7ED] border-2 border-[#ff8c42] rounded-lg">
                         <div className="text-2xl font-bold text-[#8bcc5e]">
-                            {loading ? '...' : `${data.responseRate}%`}
+                            {loading ? '...' : data.totalResponses}
                         </div>
-                        <div className="text-sm text-[#7A2F38]">Response Rate</div>
+                        <div className="text-sm text-[#7A2F38]">Total Submissions</div>
                     </div>
                     <div className="text-center p-4 bg-[#FFF7ED] border-2 border-[#ff8c42] rounded-lg">
                         <div className="text-2xl font-bold text-[#ffaa00]">
-                            {loading ? '...' : `${data.quality.skipRatePct}%`}
+                            {loading ? '...' : submissionMetrics.answersCaptured}
                         </div>
-                        <div className="text-sm text-[#7A2F38]">Drop-off Rate</div>
+                        <div className="text-sm text-[#7A2F38]">Answers Captured</div>
                     </div>
                     <div className="text-center p-4 bg-[#FFF7ED] border-2 border-[#ff8c42] rounded-lg">
                         <div className="text-2xl font-bold text-[#7A2F38]">
-                            {loading ? '...' : `${data.quality.qualityScorePct}%`}
+                            {loading ? '...' : submissionMetrics.questionsWithAnswers}
                         </div>
-                        <div className="text-sm text-[#7A2F38]">Quality Score</div>
+                        <div className="text-sm text-[#7A2F38]">Questions with Answers</div>
                     </div>
                 </div>
             </div>

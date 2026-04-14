@@ -227,7 +227,12 @@ export default function RPGDialog({ questions = [], onComplete, storyModeEnabled
     lastSelectionAtRef.current = now;
 
     const optionId = getCellOptionId(question, choiceKey);
-    handleResponse(question.id, { type: "cell_choice", choice: choiceKey, optionId });
+    handleResponse(question.id, {
+      type: "cell_choice",
+      choice: choiceKey,
+      optionId,
+      answeredAt: new Date(now).toISOString(),
+    });
   };
 
   const goPrev = () => {

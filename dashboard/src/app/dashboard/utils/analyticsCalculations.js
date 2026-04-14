@@ -9,12 +9,92 @@ export const buildEmptyAnalytics = () => ({
     boothCompletionAveragePct: 0,
     completionStats: { completed: 0, partial: 0, abandoned: 0 },
     completionTime: { averageMinutes: 0, fastestMinutes: 0, slowestMinutes: 0 },
-    quality: { completeAnswersPct: 0, detailedResponsesPct: 0, skipRatePct: 0, qualityScorePct: 0 },
+    quality: { completeAnswersPct: 0, answerCoveragePct: 0, detailedResponsesPct: 0, skipRatePct: 0, qualityScorePct: 0 },
     trends: { responseTrends: [], completionTimeTrends: [] },
     questionOptionDistributions: [],
     recentResponses: [],
     recentActivity: []
 });
+
+export const getSubmissionMetrics = (data = {}) => {
+    const totalQuestions = Number.isFinite(Number(data.totalQuestions))
+        ? Math.max(0, Number(data.totalQuestions))
+        : 0;
+    const totalResponses = Number.isFinite(Number(data.totalResponses))
+        ? Math.max(0, Number(data.totalResponses))
+        : 0;
+    const questionOptionDistributions = Array.isArray(data.questionOptionDistributions)
+        ? data.questionOptionDistributions
+        : [];
+
+    const answersCaptured = questionOptionDistributions.reduce((sum, question) => {
+        const totalCount = Number(question?.totalCount);
+        return sum + (Number.isFinite(totalCount) ? Math.max(0, totalCount) : 0);
+    }, 0);
+
+    const questionsWithAnswers = questionOptionDistributions.filter((question) => {
+        const totalCount = Number(question?.totalCount);
+        return Number.isFinite(totalCount) && totalCount > 0;
+    }).length;
+
+    const questionsWithoutAnswers = Math.max(0, totalQuestions - questionsWithAnswers);
+    const averageAnswersPerSubmission = totalResponses > 0 ? answersCaptured / totalResponses : 0;
+    const averageAnswersPerSubmissionLabel = Number.isInteger(averageAnswersPerSubmission)
+        ? String(averageAnswersPerSubmission)
+        : averageAnswersPerSubmission.toFixed(1);
+
+    return {
+        answersCaptured,
+        questionsWithAnswers,
+        questionsWithoutAnswers,
+        averageAnswersPerSubmission,
+        averageAnswersPerSubmissionLabel,
+    };
+};
+
+export const getOutcomeSummary = (data = {}) => {
+    const questionOptionDistributions = Array.isArray(data.questionOptionDistributions)
+        ? data.questionOptionDistributions
+        : [];
+
+    let cellASelections = 0;
+    let cellBSelections = 0;
+
+    questionOptionDistributions.forEach((question) => {
+        const slices = Array.isArray(question?.slices) ? question.slices : [];
+        slices.forEach((slice) => {
+            if (slice?.bucketType !== 'option') return;
+            if (slice?.choiceKey === 'A') cellASelections += Number(slice?.count) || 0;
+            if (slice?.choiceKey === 'B') cellBSelections += Number(slice?.count) || 0;
+        });
+    });
+
+    const totalSelections = cellASelections + cellBSelections;
+    const dominantChoice =
+        totalSelections === 0
+            ? 'No answers yet'
+            : cellASelections === cellBSelections
+                ? 'Tie'
+                : cellASelections > cellBSelections
+                    ? 'Cell A'
+                    : 'Cell B';
+    const dominantCount = dominantChoice === 'Cell A'
+        ? cellASelections
+        : dominantChoice === 'Cell B'
+            ? cellBSelections
+            : 0;
+    const dominantPct = totalSelections > 0 && dominantCount > 0
+        ? clampPercent((dominantCount / totalSelections) * 100)
+        : 0;
+
+    return {
+        cellASelections,
+        cellBSelections,
+        totalSelections,
+        dominantChoice,
+        dominantPct,
+    };
+};
 
 export const clampPercent = (value) => Math.max(0, Math.min(100, Math.round(value)));
 

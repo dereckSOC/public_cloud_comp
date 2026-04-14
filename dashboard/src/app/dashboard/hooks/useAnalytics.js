@@ -115,7 +115,13 @@ export function useAnalytics(activeEventId, authLoading) {
                         boothCompletionAveragePct: boothMetrics.boothCompletionAveragePct,
                         completionStats: analytics.completionStats ?? { completed: 0, partial: 0, abandoned: 0 },
                         completionTime: analytics.completionTime ?? { averageMinutes: 0, fastestMinutes: 0, slowestMinutes: 0 },
-                        quality: analytics.quality ?? { completeAnswersPct: 0, detailedResponsesPct: 0, skipRatePct: 0, qualityScorePct: 0 },
+                        quality: analytics.quality ?? {
+                            completeAnswersPct: 0,
+                            answerCoveragePct: 0,
+                            detailedResponsesPct: 0,
+                            skipRatePct: 0,
+                            qualityScorePct: 0
+                        },
                         trends: analytics.trends ?? { responseTrends: [], completionTimeTrends: [] },
                         questionOptionDistributions: analytics.questionOptionDistributions ?? [],
                         recentResponses: analytics.recentResponses ?? [],

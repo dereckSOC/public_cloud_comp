@@ -1,19 +1,12 @@
 "use client";
 import { useState } from 'react';
-import { formatDurationMinutes, clampPercent } from '../utils/analyticsCalculations';
+import { formatDurationMinutes, getSubmissionMetrics, getOutcomeSummary } from '../utils/analyticsCalculations';
 
 export default function ResponsesTab({ eventId, eventName, data, loading, error, questionFilter, onClearFilter }) {
     const [exporting, setExporting] = useState(false);
-    const totalResponses = data.totalResponses || 0;
-    const completedPct = totalResponses > 0
-        ? clampPercent((data.completionStats.completed / totalResponses) * 100)
-        : 0;
-    const partialPct = totalResponses > 0
-        ? clampPercent((data.completionStats.partial / totalResponses) * 100)
-        : 0;
-    const abandonedPct = totalResponses > 0
-        ? clampPercent((data.completionStats.abandoned / totalResponses) * 100)
-        : 0;
+    const submissionMetrics = getSubmissionMetrics(data);
+    const outcomeSummary = getOutcomeSummary(data);
+    const latestActivityLabel = data.recentActivity?.[0]?.time || 'No recent activity';
     const filteredResponses = questionFilter?.id
         ? data.recentResponses.filter((response) => response.questionId === questionFilter.id)
         : data.recentResponses;
@@ -109,24 +102,32 @@ export default function ResponsesTab({ eventId, eventName, data, loading, error,
             {/* Response Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-[#FFF7ED] rounded-lg p-6 border-2 border-[#ff8c42] shadow-sm">
-                    <h3 className="text-lg font-semibold mb-4 text-[#7A2F38]">Response Distribution</h3>
+                    <h3 className="text-lg font-semibold mb-4 text-[#7A2F38]">Submission Summary</h3>
                     <div className="space-y-3">
                         <div className="flex justify-between items-center">
-                            <span className="text-sm text-[#7A2F38]">Completed</span>
+                            <span className="text-sm text-[#7A2F38]">Total Submissions</span>
                             <span className="font-semibold text-[#8bcc5e]">
-                                {loading ? '...' : `${completedPct}%`}
+                                {loading ? '...' : data.totalResponses}
                             </span>
                         </div>
                         <div className="flex justify-between items-center">
-                            <span className="text-sm text-[#7A2F38]">Partial</span>
+                            <span className="text-sm text-[#7A2F38]">Answers Captured</span>
+                            <span className="font-semibold text-[#7A2F38]">
+                                {loading ? '...' : submissionMetrics.answersCaptured}
+                            </span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                            <span className="text-sm text-[#7A2F38]">Avg Answers / Submission</span>
                             <span className="font-semibold text-[#ffaa00]">
-                                {loading ? '...' : `${partialPct}%`}
+                                {loading
+                                    ? '...'
+                                    : `${submissionMetrics.averageAnswersPerSubmissionLabel} of ${data.totalQuestions}`}
                             </span>
                         </div>
                         <div className="flex justify-between items-center">
-                            <span className="text-sm text-[#7A2F38]">Abandoned</span>
-                            <span className="font-semibold text-[#e74c3c]">
-                                {loading ? '...' : `${abandonedPct}%`}
+                            <span className="text-sm text-[#7A2F38]">Latest Activity</span>
+                            <span className="font-semibold text-[#7A2F38]">
+                                {loading ? '...' : latestActivityLabel}
                             </span>
                         </div>
                     </div>
@@ -155,24 +156,28 @@ export default function ResponsesTab({ eventId, eventName, data, loading, error,
                     </div>
                 </div>
                 <div className="bg-[#FFF7ED] rounded-lg p-6 border-2 border-[#ff8c42] shadow-sm">
-                    <h3 className="text-lg font-semibold mb-4 text-[#7A2F38]">Response Quality</h3>
+                    <h3 className="text-lg font-semibold mb-4 text-[#7A2F38]">Outcome Summary</h3>
                     <div className="space-y-3">
                         <div className="flex justify-between items-center">
-                            <span className="text-sm text-[#7A2F38]">Complete Answers</span>
+                            <span className="text-sm text-[#7A2F38]">Cell A Selections</span>
                             <span className="font-semibold text-[#8bcc5e]">
-                                {loading ? '...' : `${data.quality.completeAnswersPct}%`}
+                                {loading ? '...' : outcomeSummary.cellASelections}
                             </span>
                         </div>
                         <div className="flex justify-between items-center">
-                            <span className="text-sm text-[#7A2F38]">Detailed Responses</span>
-                            <span className="font-semibold text-[#7A2F38]">
-                                {loading ? '...' : `${data.quality.detailedResponsesPct}%`}
-                            </span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                            <span className="text-sm text-[#7A2F38]">Skip Rate</span>
+                            <span className="text-sm text-[#7A2F38]">Cell B Selections</span>
                             <span className="font-semibold text-[#ffaa00]">
-                                {loading ? '...' : `${data.quality.skipRatePct}%`}
+                                {loading ? '...' : outcomeSummary.cellBSelections}
+                            </span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                            <span className="text-sm text-[#7A2F38]">Dominant Choice</span>
+                            <span className="font-semibold text-[#7A2F38]">
+                                {loading
+                                    ? '...'
+                                    : outcomeSummary.dominantChoice === 'Cell A' || outcomeSummary.dominantChoice === 'Cell B'
+                                        ? `${outcomeSummary.dominantChoice} (${outcomeSummary.dominantPct}%)`
+                                        : outcomeSummary.dominantChoice}
                             </span>
                         </div>
                     </div>

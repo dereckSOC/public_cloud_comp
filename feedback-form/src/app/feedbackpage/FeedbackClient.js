@@ -279,6 +279,10 @@ export default function FeedbackClient() {
           if (value.type === "cell_choice") {
             const choice = value.choice === "A" || value.choice === "B" ? value.choice : null;
             const numericOptionId = Number(value.optionId);
+            const answeredAt =
+              typeof value.answeredAt === "string" && Number.isFinite(new Date(value.answeredAt).getTime())
+                ? value.answeredAt
+                : submittedAt;
             const translatedQuestion = translatedQuestionById.get(numericQuestionId);
             const originalQuestion = originalQuestionById.get(numericQuestionId);
             const translatedOption = (translatedQuestion?.options || []).find(
@@ -301,7 +305,7 @@ export default function FeedbackClient() {
                 : Number.isFinite(translatedOption?.sort_order)
                 ? translatedOption.sort_order
                 : fallbackNumeric,
-              created_at: submittedAt,
+              created_at: answeredAt,
             };
           }
 

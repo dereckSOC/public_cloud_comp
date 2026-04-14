@@ -1,2 +1,5 @@
-/services/analytics-service/node_modules
-/services/feedback-service/node_modules
+node_modules/
+.next/
+runtime-logs/
+.env
+.env.local

@@ -468,8 +468,20 @@ async function handleAnalytics(req, url, res) {
 
   // Question option distributions
   const questionOptionDistributions = activeQuestions.map((question) => {
-    const configuredOptions = (optionsByQuestion.get(question.id) ?? []).map((opt, idx) => ({
-      ...opt, label: (opt.option_text || "").trim() || `Option ${idx + 1}`,
+    const rawOptions = optionsByQuestion.get(question.id) ?? [];
+    const configuredOptions = rawOptions.map((opt, idx) => ({
+      ...opt,
+      label: (opt.option_text || "").trim() || `Option ${idx + 1}`,
+      choiceKey:
+        opt.choice_key === "A" || opt.choice_key === "B"
+          ? opt.choice_key
+          : rawOptions.length === 2
+          ? idx === 0
+            ? "A"
+            : idx === 1
+            ? "B"
+            : null
+          : null,
     }));
     const answersForQ = answersByQuestion.get(question.id) ?? [];
     const optionCountById = new Map(configuredOptions.map((o) => [o.id, 0]));
@@ -506,7 +518,7 @@ async function handleAnalytics(req, url, res) {
 
     const slices = configuredOptions.map((opt) => ({
       id: `option-${opt.id}`, optionId: opt.id, label: opt.label,
-      count: optionCountById.get(opt.id) ?? 0, bucketType: "option",
+      count: optionCountById.get(opt.id) ?? 0, bucketType: "option", choiceKey: opt.choiceKey ?? null,
     }));
     if (deletedCount > 0) slices.push({ id: `deleted-${question.id}`, optionId: null, label: "Deleted option", count: deletedCount, bucketType: "deleted" });
     if (unmappedCount > 0) slices.push({ id: `unmapped-${question.id}`, optionId: null, label: "Other / Unmapped", count: unmappedCount, bucketType: "unmapped" });
@@ -538,17 +550,21 @@ async function handleAnalytics(req, url, res) {
   const responseRate = totalResponses > 0 ? clampPercent((completedCount / totalResponses) * 100) : 0;
 
   const totalAnswered = responseStats.reduce((s, r) => s + r.answeredCount, 0);
-  const skipRate = totalQuestions > 0 && totalResponses > 0 ? clampPercent((1 - totalAnswered / (totalQuestions * totalResponses)) * 100) : 0;
+  const answerCoveragePct = totalQuestions > 0 && totalResponses > 0
+    ? clampPercent((totalAnswered / (totalQuestions * totalResponses)) * 100)
+    : 0;
+  const skipRate = totalQuestions > 0 && totalResponses > 0
+    ? clampPercent((1 - totalAnswered / (totalQuestions * totalResponses)) * 100)
+    : 0;
 
   const durations = responseStats.map((r) => r.durationMinutes).filter(Number.isFinite);
   const averageMinutes = durations.length > 0 ? durations.reduce((s, v) => s + v, 0) / durations.length : 0;
   const fastestMinutes = durations.length > 0 ? Math.min(...durations) : 0;
   const slowestMinutes = durations.length > 0 ? Math.max(...durations) : 0;
 
-  const detailedResponseIds = new Set();
-  answerRows.forEach((a) => { if ((a.answer_text || "").trim().length >= 30) detailedResponseIds.add(a.response_id); });
-  const detailedResponsesPct = totalResponses > 0 ? clampPercent((detailedResponseIds.size / totalResponses) * 100) : 0;
-  const qualityScorePct = totalResponses > 0 ? clampPercent((responseRate + detailedResponsesPct) / 2) : 0;
+  const qualityScorePct = totalResponses > 0
+    ? clampPercent((responseRate + answerCoveragePct) / 2)
+    : 0;
 
   // Trends
   const responseDateKey = new Map();
@@ -611,7 +627,13 @@ async function handleAnalytics(req, url, res) {
     avgCompletionLabel: formatDurationMinutes(averageMinutes),
     completionStats: { completed: completedCount, partial: partialCount, abandoned: abandonedCount },
     completionTime: { averageMinutes, fastestMinutes, slowestMinutes },
-    quality: { completeAnswersPct: responseRate, detailedResponsesPct, skipRatePct: skipRate, qualityScorePct },
+    quality: {
+      completeAnswersPct: responseRate,
+      answerCoveragePct,
+      detailedResponsesPct: answerCoveragePct,
+      skipRatePct: skipRate,
+      qualityScorePct,
+    },
     trends: { responseTrends, completionTimeTrends },
     questionOptionDistributions, recentResponses, recentActivity,
   });
