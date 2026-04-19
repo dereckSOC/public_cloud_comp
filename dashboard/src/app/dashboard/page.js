@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useMemo, useState, Suspense } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { signOutCurrentUser } from '@psd/shared/lib/authClient';
+import SupportedByBadge from '@psd/shared/components/SupportedByBadge';
 import { useAuth } from './hooks/useAuth';
 import { useAnalytics } from './hooks/useAnalytics';
 import OverviewTab from './components/OverviewTab';
@@ -111,7 +112,7 @@ function DashboardContent() {
                 </div>
             </nav>
             {/* Main Content */}
-            <main className="p-6">
+            <main className="p-6 space-y-8">
                 {activeTab === 'overview' && (
                     <OverviewTab
                         data={analyticsState.data}
@@ -151,6 +152,10 @@ function DashboardContent() {
                     />
                 )}
                 {activeTab === 'event settings' && <EventSettings eventId={activeEventId} userRole={userRole} />}
+
+                <div className="flex justify-center sm:justify-end">
+                    <SupportedByBadge logoSrc="/images/world-gold-council.jpg" tone="light" />
+                </div>
             </main>
         </div>
     );

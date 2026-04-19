@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import i18n from "i18next";
+import i18n from "./i18n";
 
 export default function useQueryParams() {
   const searchParams = useSearchParams();

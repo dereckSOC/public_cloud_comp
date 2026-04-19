@@ -1,6 +1,6 @@
 "use client";
 
-import i18n from "i18next";
+import i18n from "../lib/i18n";
 import { usePathname, useRouter } from "next/navigation";
 import useQueryParams from "../lib/useQueryParams";
 

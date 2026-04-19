@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import useQueryParams from "../lib/useQueryParams";
 import RpgCard from "./RpgCard";
+import SupportedByBadge from "./SupportedByBadge";
 
 const OPTION_DEBOUNCE_MS = 250;
 const CARD_SHADOW = "0 10px 50px rgba(0,0,0,0.9), inset 0 0 100px rgba(0,0,0,0.1)";
@@ -118,6 +119,14 @@ function buildDialoguePair(question, labels, optionByChoice) {
       };
     }),
   ];
+}
+
+function FeedbackSupportBadge() {
+  return (
+    <div className="mt-4 flex justify-center">
+      <SupportedByBadge logoSrc="/images/world-gold-council.jpg" tone="dark" />
+    </div>
+  );
 }
 
 export default function RPGDialog({ questions = [], onComplete, storyModeEnabled = true }) {
@@ -251,7 +260,7 @@ export default function RPGDialog({ questions = [], onComplete, storyModeEnabled
 
   if (questions.length === 0) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-zinc-950 via-slate-900 to-black">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-gradient-to-b from-zinc-950 via-slate-900 to-black px-4">
         <div
           className="text-2xl text-amber-100 font-mono tracking-wider"
           style={{
@@ -260,6 +269,7 @@ export default function RPGDialog({ questions = [], onComplete, storyModeEnabled
         >
           {t("rpg.loading", "Loading...")}
         </div>
+        <FeedbackSupportBadge />
       </div>
     );
   }
@@ -326,6 +336,8 @@ export default function RPGDialog({ questions = [], onComplete, storyModeEnabled
               style={{ width: "0%", boxShadow: "0 0 10px rgba(22, 101, 52, 0.5)" }}
             />
           </div>
+
+          <FeedbackSupportBadge />
         </div>
       </div>
     );
@@ -380,6 +392,8 @@ export default function RPGDialog({ questions = [], onComplete, storyModeEnabled
             </div>
           </div>
         </div>
+
+        <FeedbackSupportBadge />
       </div>
     );
   }
@@ -474,6 +488,8 @@ export default function RPGDialog({ questions = [], onComplete, storyModeEnabled
             }}
           />
         </div>
+
+        <FeedbackSupportBadge />
       </div>
     </div>
   );

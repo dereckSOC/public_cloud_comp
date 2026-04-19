@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import useQueryParams from "@psd/shared/lib/useQueryParams";
+import i18n from "@psd/shared/lib/i18n";
 import { useAudioMuted } from "@psd/shared/lib/audioPreferences";
 import AudioToggleButton from "@psd/shared/components/AudioToggleButton";
 import RpgCard from "@psd/shared/components/RpgCard";
@@ -105,7 +106,7 @@ function normalizeLang(raw) {
 }
 
 export default function IntroClient() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const router = useRouter();
   const searchParams = useSearchParams();
   const { eventId, buildQueryString } = useQueryParams();
@@ -148,10 +149,10 @@ export default function IntroClient() {
   }, [checkingEventAccess, isEventAllowed, storyModeEnabled, router, buildQueryString]);
 
   useEffect(() => {
-    if (i18n.language !== selectedLang) {
+    if (typeof i18n.changeLanguage === "function" && i18n.language !== selectedLang) {
       i18n.changeLanguage(selectedLang);
     }
-  }, [i18n, selectedLang]);
+  }, [selectedLang]);
 
   useEffect(() => {
     introAlarmRef.current = new Audio(INTRO_ALERT_SOUND_PATH);
